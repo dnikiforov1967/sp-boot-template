@@ -8,4 +8,18 @@
     </parent>
     <artifactId>sp-boot-template-root</artifactId>
     <packaging>jar</packaging>
+	
+	<dependencies>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>sp-boot-template-root-common</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>sp-boot-template-root-service</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	</dependencies>
+	
 </project>
