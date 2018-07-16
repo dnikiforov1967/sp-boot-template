@@ -5,6 +5,7 @@
  */
 package org.template.spboot.root;
 
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -12,6 +13,7 @@ import org.springframework.context.annotation.Configuration;
  * @author dnikiforov
  */
 @Configuration
+@ComponentScan("org.template.spboot.root")
 public class RootContext {
 	
 }
