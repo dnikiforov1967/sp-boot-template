@@ -73,5 +73,6 @@
     <modules>
         <module>sp-boot-template-head</module>
         <module>sp-boot-template-web</module>
+        <module>sp-boot-template-root</module>
     </modules>
 </project>

@@ -8,6 +8,7 @@ package org.template.spboot.head;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.template.spboot.root.RootContext;
 import org.template.spboot.web.WebApplicationConfig;
 
 /**
@@ -18,7 +19,9 @@ public class MainApplication {
 	
 	public static void main(String... args) {
 		final ConfigurableApplicationContext run = new SpringApplicationBuilder()
-				.parent(WebApplicationConfig.class)
+				.parent(RootContext.class)
+				.web(WebApplicationType.NONE)
+				.child(WebApplicationConfig.class)
 				.web(WebApplicationType.SERVLET)
 				.run(args);
 	}
