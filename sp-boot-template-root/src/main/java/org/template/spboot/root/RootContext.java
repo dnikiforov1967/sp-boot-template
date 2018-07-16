@@ -5,15 +5,17 @@
  */
 package org.template.spboot.root;
 
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.boot.autoconfigure.jms.JmsAutoConfiguration;
 
 /**
  *
  * @author dnikiforov
  */
-@Configuration
-@ComponentScan("org.template.spboot.root")
+@SpringBootApplication(
+		exclude = {DataSourceAutoConfiguration.class, JmsAutoConfiguration.class}
+)
 public class RootContext {
-	
+
 }
