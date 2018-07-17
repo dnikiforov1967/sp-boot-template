@@ -14,7 +14,7 @@ import org.springframework.boot.autoconfigure.jms.JmsAutoConfiguration;
  * @author dnikiforov
  */
 @SpringBootApplication(
-		exclude = {DataSourceAutoConfiguration.class, JmsAutoConfiguration.class}
+		//exclude = {DataSourceAutoConfiguration.class, JmsAutoConfiguration.class}
 )
 public class RootContext {
 
