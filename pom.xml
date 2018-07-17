@@ -81,6 +81,7 @@
 		<module>sp-boot-template-root</module>
 		<module>sp-boot-template-root-common</module>
 		<module>sp-boot-template-root-data</module>
+		<module>sp-boot-template-root-jms</module>
 		<module>sp-boot-template-root-service</module>
 		<module>sp-boot-template-web</module>
 	</modules>
