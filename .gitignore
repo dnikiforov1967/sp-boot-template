@@ -1,3 +1,4 @@
 **/target/**
 **/tmlog*.log
 p-boot-template-root-data/transaction-logs
+**/activemq-data
