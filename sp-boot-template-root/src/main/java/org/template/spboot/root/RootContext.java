@@ -7,6 +7,7 @@ package org.template.spboot.root;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.template.spboot.root.annotation.FromParent;
 import org.template.spboot.root.interfaces.AnimalInterface;
 
 /**
@@ -17,11 +18,12 @@ import org.template.spboot.root.interfaces.AnimalInterface;
 public class RootContext {
 
 	@Bean(name = {"parentAlias", "animal"})
+	@FromParent
 	public AnimalInterface returnAnimal() {
 		return new AnimalInterface() {
 			@Override
 			public String animalName() {
-				return "Cat";
+				return "Cat 1";
 			}
 		};
 	}
@@ -31,7 +33,7 @@ public class RootContext {
 		return new AnimalInterface() {
 			@Override
 			public String animalName() {
-				return "Cat";
+				return "Cat 2";
 			}
 		};
 	}

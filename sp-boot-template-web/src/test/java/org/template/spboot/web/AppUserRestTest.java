@@ -30,6 +30,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import org.template.spboot.root.annotation.FromParent;
 import org.template.spboot.root.common.CommonHelper;
 import org.template.spboot.root.data.model.AppRole;
 import org.template.spboot.root.data.model.AppUser;
@@ -62,7 +63,11 @@ public class AppUserRestTest {
 	private AnimalInterface animalParent;	
 	
 	@MockBean(name = "parentAlias")
-	private AnimalInterface animalParentByAlias;	
+	private AnimalInterface animalParentByAlias;
+
+	@MockBean
+	@FromParent
+	private AnimalInterface fromParent;
 
 	@MockBean
 	private PasswordEncoder passwordEncoder;
