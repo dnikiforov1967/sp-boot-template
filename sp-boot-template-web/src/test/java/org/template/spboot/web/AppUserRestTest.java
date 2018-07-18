@@ -12,7 +12,6 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -36,6 +35,7 @@ import org.template.spboot.root.data.model.AppRole;
 import org.template.spboot.root.data.model.AppUser;
 import org.template.spboot.root.data.model.RoleEnum;
 import org.template.spboot.root.data.resource.AppUserResource;
+import org.template.spboot.root.interfaces.AnimalInterface;
 import org.template.spboot.root.service.UserApiServiceInterface;
 
 /**
@@ -57,6 +57,12 @@ public class AppUserRestTest {
 
 	@MockBean(name = "jpaUserApiService")
 	private UserApiServiceInterface userApiService;
+	
+	@MockBean(name = "animalParent")
+	private AnimalInterface animalParent;	
+	
+	@MockBean(name = "parentAlias")
+	private AnimalInterface animalParentByAlias;	
 
 	@MockBean
 	private PasswordEncoder passwordEncoder;

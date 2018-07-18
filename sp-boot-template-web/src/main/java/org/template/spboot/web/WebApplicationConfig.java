@@ -6,6 +6,9 @@
 package org.template.spboot.web;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
+import org.template.spboot.root.interfaces.AnimalInterface;
 
 /**
  *
@@ -13,5 +16,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 public class WebApplicationConfig {
-	
+
+	@Bean("animal")
+	@Primary
+	public AnimalInterface animal() {
+		return new AnimalInterface() {
+			@Override
+			public String animalName() {
+				return "Dog";
+			}
+		};
+	}
 }

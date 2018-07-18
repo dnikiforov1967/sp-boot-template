@@ -6,14 +6,34 @@
 package org.template.spboot.root;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.template.spboot.root.interfaces.AnimalInterface;
 
 /**
  *
  * @author dnikiforov
  */
-@SpringBootApplication(
-		//exclude = {DataSourceAutoConfiguration.class, JmsAutoConfiguration.class}
-)
+@SpringBootApplication
 public class RootContext {
+
+	@Bean(name = {"parentAlias", "animal"})
+	public AnimalInterface returnAnimal() {
+		return new AnimalInterface() {
+			@Override
+			public String animalName() {
+				return "Cat";
+			}
+		};
+	}
+
+	@Bean("animalParent")
+	public AnimalInterface returnAnimalParent() {
+		return new AnimalInterface() {
+			@Override
+			public String animalName() {
+				return "Cat";
+			}
+		};
+	}
 
 }
