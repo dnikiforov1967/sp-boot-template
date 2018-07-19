@@ -5,7 +5,6 @@
  */
 package org.template.spboot.web.controller;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Inject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +49,10 @@ public class EmptyController {
 	@Autowired
 	private FeedInterface feed;
 
+	@Autowired
+	@Qualifier("parentFeed")
+	private FeedInterface parentFeed;
+
 	@Inject
 	@FromParent
 	private AnimalInterface fromParent;
@@ -92,6 +95,11 @@ public class EmptyController {
 	@RequestMapping(path = "/feed", method = GET)
 	public Integer getFeed() {
 		return feed.feed();
+	}
+
+	@RequestMapping(path = "/parentFeed", method = GET)
+	public Integer getParentFeed() {
+		return parentFeed.feed();
 	}
 
 }

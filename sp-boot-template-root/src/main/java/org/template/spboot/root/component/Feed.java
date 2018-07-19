@@ -5,6 +5,7 @@
  */
 package org.template.spboot.root.component;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.template.spboot.root.interfaces.FeedInterface;
 

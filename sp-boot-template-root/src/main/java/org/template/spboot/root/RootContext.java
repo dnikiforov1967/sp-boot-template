@@ -5,10 +5,13 @@
  */
 package org.template.spboot.root;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.template.spboot.root.annotation.FromParent;
 import org.template.spboot.root.interfaces.AnimalInterface;
+import org.template.spboot.root.interfaces.FeedInterface;
 
 /**
  *
@@ -16,6 +19,10 @@ import org.template.spboot.root.interfaces.AnimalInterface;
  */
 @SpringBootApplication
 public class RootContext {
+
+	@Autowired
+	@Qualifier("feed")
+	private FeedInterface feed;
 
 	@Bean(name = {"parentAlias", "animal"})
 	@FromParent
@@ -36,6 +43,11 @@ public class RootContext {
 				return "Cat 2";
 			}
 		};
+	}
+
+	@Bean("parentFeed")
+	public FeedInterface feed() {
+		return feed;
 	}
 
 }

@@ -66,6 +66,9 @@ public class AppUserRestTest {
 	@MockBean(name = "parentAlias")
 	private AnimalInterface animalParentByAlias;
 
+	@MockBean(name = "parentFeed")
+	private FeedInterface parentFeed;	
+	
 	@MockBean
 	@FromParent
 	private AnimalInterface fromParent;
