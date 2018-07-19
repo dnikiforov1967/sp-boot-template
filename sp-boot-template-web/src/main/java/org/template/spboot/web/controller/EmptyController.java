@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import org.template.spboot.root.annotation.FromParent;
 import org.template.spboot.root.interfaces.AnimalInterface;
+import org.template.spboot.root.interfaces.FeedInterface;
 
 /**
  *
@@ -45,6 +46,9 @@ public class EmptyController {
 	@Autowired
 	@Qualifier("parentAlias")
 	private AnimalInterface animalParentByAlias;
+
+	@Autowired
+	private FeedInterface feed;
 
 	@Inject
 	@FromParent
@@ -83,6 +87,11 @@ public class EmptyController {
 	@RequestMapping(path = "/animalFromParent", method = GET)
 	public String getAnimalFromParent() {
 		return fromParent.animalName();
+	}
+
+	@RequestMapping(path = "/feed", method = GET)
+	public Integer getFeed() {
+		return feed.feed();
 	}
 
 }

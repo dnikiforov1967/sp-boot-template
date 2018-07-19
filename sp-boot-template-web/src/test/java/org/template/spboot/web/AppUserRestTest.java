@@ -37,6 +37,7 @@ import org.template.spboot.root.data.model.AppUser;
 import org.template.spboot.root.data.model.RoleEnum;
 import org.template.spboot.root.data.resource.AppUserResource;
 import org.template.spboot.root.interfaces.AnimalInterface;
+import org.template.spboot.root.interfaces.FeedInterface;
 import org.template.spboot.root.service.UserApiServiceInterface;
 
 /**
@@ -46,7 +47,7 @@ import org.template.spboot.root.service.UserApiServiceInterface;
  */
 @RunWith(SpringRunner.class)
 @ContextHierarchy({
-        @ContextConfiguration(name = "root", classes = WebApplicationConfig.class)
+	@ContextConfiguration(name = "root", classes = WebApplicationConfig.class)
 })
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @AutoConfigureMockMvc()
@@ -58,12 +59,15 @@ public class AppUserRestTest {
 
 	@MockBean(name = "jpaUserApiService")
 	private UserApiServiceInterface userApiService;
-	
+
 	@MockBean(name = "animalParent")
-	private AnimalInterface animalParent;	
-	
+	private AnimalInterface animalParent;
+
 	@MockBean(name = "parentAlias")
 	private AnimalInterface animalParentByAlias;
+
+	@MockBean
+	private FeedInterface feed;
 
 	@MockBean
 	@FromParent
@@ -71,7 +75,7 @@ public class AppUserRestTest {
 
 	@MockBean
 	private PasswordEncoder passwordEncoder;
-	
+
 	@Autowired
 	private MockMvc mockMvc;
 
