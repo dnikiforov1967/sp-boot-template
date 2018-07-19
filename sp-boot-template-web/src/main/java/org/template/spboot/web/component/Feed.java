@@ -12,7 +12,7 @@ import org.template.spboot.root.interfaces.FeedInterface;
  *
  * @author dnikiforov
  */
-@Component
+@Component("feed")
 public class Feed implements FeedInterface {
 
 	@Override
