@@ -23,6 +23,7 @@ public class MainApplication {
 				.web(WebApplicationType.NONE)
 				.child(WebApplicationConfig.class)
 				.web(WebApplicationType.SERVLET)
+				.profiles("prod")
 				.run(args);
 	}
 	
