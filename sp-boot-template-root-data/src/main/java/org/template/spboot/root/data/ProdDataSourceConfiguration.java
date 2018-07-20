@@ -6,8 +6,10 @@
 package org.template.spboot.root.data;
 
 import com.atomikos.jdbc.AtomikosDataSourceBean;
+import java.sql.SQLException;
 import java.util.Properties;
 import javax.sql.DataSource;
+import oracle.jdbc.pool.OracleDataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,16 +35,14 @@ public class ProdDataSourceConfiguration {
 	private String password;
 
 	@Bean
-	public DataSource dataSource() {
-		AtomikosDataSourceBean atomikosDataSourceBean = new AtomikosDataSourceBean();
-		atomikosDataSourceBean.setXaDataSourceClassName(xaClass);
-		Properties properties = new Properties();
-		properties.put("user", username);
-		properties.put("password", password);
-		properties.put("url", urlDatabase);
-		atomikosDataSourceBean.setXaProperties(properties);
-		atomikosDataSourceBean.setUniqueResourceName("mainDataSourceResource");
-		return atomikosDataSourceBean;
+	public DataSource dataSource() throws SQLException {
+		OracleDataSource dataSource = new OracleDataSource();
+        dataSource.setUser(username);
+        dataSource.setPassword(password);
+        dataSource.setURL(urlDatabase);
+        dataSource.setImplicitCachingEnabled(true);
+        dataSource.setFastConnectionFailoverEnabled(true);
+        return dataSource;		
 	}
 
 }
