@@ -34,6 +34,7 @@ public class ProdDataSourceConfiguration {
 
 	@Bean
 	public DataSource dataSource() throws SQLException {
+		//Remark: UCP does not work in version 11.2.0.4 (!!)
 		OracleXADataSource dataSource = new OracleXADataSource();
         dataSource.setUser(username);
         dataSource.setPassword(password);
