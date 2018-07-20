@@ -18,10 +18,8 @@ import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.ContextHierarchy;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.template.spboot.root.data.jpa.RoleJpaInterface;
 import org.template.spboot.root.data.jpa.UserAppJpaInterface;
@@ -35,6 +33,7 @@ import static org.template.spboot.root.data.model.RoleEnum.ROLE_USER;
  * @author dnikiforov
  */
 @RunWith(SpringRunner.class)
+@ActiveProfiles("dev")
 @EnableAutoConfiguration
 @ContextConfiguration(classes = {DatabaseConfiguration.class})
 @Transactional
