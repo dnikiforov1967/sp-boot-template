@@ -43,6 +43,7 @@ public class DevDataSourceConfiguration {
         properties.put("url", urlDatabase);
         atomikosDataSourceBean.setXaProperties(properties);
         atomikosDataSourceBean.setUniqueResourceName("mainDataSourceResource");
+		atomikosDataSourceBean.setPoolSize(10);
         return atomikosDataSourceBean;
     }	
 	
