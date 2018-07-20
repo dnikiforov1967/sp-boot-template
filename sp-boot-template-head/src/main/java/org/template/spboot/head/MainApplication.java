@@ -21,6 +21,7 @@ public class MainApplication {
 		final ConfigurableApplicationContext run = new SpringApplicationBuilder()
 				.parent(RootContext.class)
 				.web(WebApplicationType.NONE)
+				.profiles("prod")
 				.child(WebApplicationConfig.class)
 				.web(WebApplicationType.SERVLET)
 				.profiles("prod")
