@@ -20,7 +20,7 @@ import org.springframework.context.annotation.PropertySource;
  */
 @Configuration
 @Profile("dev")
-@PropertySource("classpath:/data.properties")
+@PropertySource("classpath:/dev.properties")
 public class DevDataSourceConfiguration {
 	
     @Value("${atomikos.datasource.url}")
