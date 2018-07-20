@@ -5,11 +5,9 @@
  */
 package org.template.spboot.root.data;
 
-import com.atomikos.jdbc.AtomikosDataSourceBean;
 import java.sql.SQLException;
-import java.util.Properties;
 import javax.sql.DataSource;
-import oracle.jdbc.pool.OracleDataSource;
+import oracle.jdbc.xa.client.OracleXADataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -36,7 +34,7 @@ public class ProdDataSourceConfiguration {
 
 	@Bean
 	public DataSource dataSource() throws SQLException {
-		OracleDataSource dataSource = new OracleDataSource();
+		OracleXADataSource dataSource = new OracleXADataSource();
         dataSource.setUser(username);
         dataSource.setPassword(password);
         dataSource.setURL(urlDatabase);
