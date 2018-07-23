@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.template.spboot.root.annotation.FromParent;
 import org.template.spboot.root.interfaces.AnimalInterface;
 import org.template.spboot.root.interfaces.FeedInterface;
+import org.template.spboot.root.interfaces.SwitchInterface;
 
 /**
  *
@@ -48,6 +49,16 @@ public class RootContext {
 	@Bean("parentFeed")
 	public FeedInterface feed() {
 		return feed;
+	}
+
+	@Bean("switch")
+	public SwitchInterface getSwitch() {
+		return new SwitchInterface() {
+			@Override
+			public String switchName() {
+				return "Root switch";
+			}
+		};
 	}
 
 }
