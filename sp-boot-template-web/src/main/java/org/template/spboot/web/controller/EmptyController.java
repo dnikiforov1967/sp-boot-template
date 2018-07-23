@@ -17,6 +17,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import org.template.spboot.root.annotation.FromParent;
 import org.template.spboot.root.interfaces.AnimalInterface;
 import org.template.spboot.root.interfaces.FeedInterface;
+import org.template.spboot.root.interfaces.SwitchInterface;
 
 /**
  *
@@ -56,6 +57,10 @@ public class EmptyController {
 	@Inject
 	@FromParent
 	private AnimalInterface fromParent;
+
+	@Autowired
+	@Qualifier("switch")
+	private SwitchInterface switchInterface;
 
 	@RequestMapping(value = "", method = GET)
 	public String get() {
@@ -100,6 +105,11 @@ public class EmptyController {
 	@RequestMapping(path = "/parentFeed", method = GET)
 	public Integer getParentFeed() {
 		return parentFeed.feed();
+	}
+
+	@RequestMapping(path = "/switch", method = GET)
+	public String getSwitch() {
+		return switchInterface.switchName();
 	}
 
 }
