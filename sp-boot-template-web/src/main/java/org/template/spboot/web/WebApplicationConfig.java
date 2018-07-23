@@ -6,9 +6,11 @@
 package org.template.spboot.web;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
 import org.template.spboot.root.interfaces.AnimalInterface;
+import org.template.spboot.root.interfaces.SwitchInterface;
 
 /**
  *
@@ -27,4 +29,16 @@ public class WebApplicationConfig {
 			}
 		};
 	}
+
+	@Bean("switch")
+	@ConditionalOnProperty(name = "context.switch", havingValue = "child")
+	public SwitchInterface getSwitch() {
+		return new SwitchInterface() {
+			@Override
+			public String switchName() {
+				return "Child switch";
+			}
+		};
+	}
+
 }
