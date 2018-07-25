@@ -7,10 +7,12 @@ package org.template.spboot.web;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
 import org.template.spboot.root.interfaces.AnimalInterface;
 import org.template.spboot.root.interfaces.SwitchInterface;
+import org.template.spboot.web.servlets.StatisticsServlet;
 
 /**
  *
@@ -40,5 +42,11 @@ public class WebApplicationConfig {
 			}
 		};
 	}
+        
+        @Bean
+        public ServletRegistrationBean axisServletRegistrationBean() {
+            ServletRegistrationBean registration = new ServletRegistrationBean(new StatisticsServlet(), "/statistics/raw");
+            return registration;
+        }        
 
 }
