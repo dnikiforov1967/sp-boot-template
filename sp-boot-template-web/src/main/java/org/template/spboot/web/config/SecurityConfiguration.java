@@ -90,6 +90,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/security/login").permitAll()
 				.regexMatchers("/hello.*").permitAll()
                                 .regexMatchers("/statistics.*").permitAll()
+                                .regexMatchers("/views.*").permitAll()
 				.anyRequest().authenticated()
 				.and()
 				//Adjust the logout behaviour
