@@ -7,7 +7,7 @@
 		<version>0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>sp-boot-template-head</artifactId>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	
 	<dependencies>
 		<dependency>
