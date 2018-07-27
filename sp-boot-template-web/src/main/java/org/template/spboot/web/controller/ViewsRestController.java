@@ -7,6 +7,7 @@ package org.template.spboot.web.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -17,12 +18,11 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/views")
 public class ViewsRestController {
 
-    @RequestMapping("/modelview")
-    public ModelAndView getModelView() {
-        System.out.println("MODEL AND VIEW");
-        final ModelAndView modelAndView = new ModelAndView("simpleView");
-        modelAndView.addObject("name", "Dima");
-        return modelAndView;
-    }
+	@RequestMapping("/modelview")
+	public ModelAndView getModelView(@RequestParam(value = "name", required = false, defaultValue = "Dmitry") String name) {
+		final ModelAndView modelAndView = new ModelAndView("simpleView");
+		modelAndView.addObject("name", name);
+		return modelAndView;
+	}
 
 }
