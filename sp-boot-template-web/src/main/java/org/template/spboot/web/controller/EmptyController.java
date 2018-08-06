@@ -13,14 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import org.template.spboot.root.annotation.FromParent;
-import org.template.spboot.root.data.resource.UserRequest;
+import org.template.spboot.root.beans.SimpleBean;
 import org.template.spboot.root.interfaces.AnimalInterface;
 import org.template.spboot.root.interfaces.FeedInterface;
 import org.template.spboot.root.interfaces.SwitchInterface;
@@ -118,9 +116,9 @@ public class EmptyController {
 		return switchInterface.switchName();
 	}
 
-	@RequestMapping(path = "/username", method = POST)
-	public void getSwitch(@RequestBody @Valid UserRequest userRequest) {
-		System.out.println("GOT IN POST "+userRequest.getUsername());
-	}	
+	@RequestMapping(path = "/simplebean/{name}", method = GET)
+	public String getSimpleBean(@PathVariable("name") SimpleBean simpleBean) {
+            return simpleBean.getName();
+	}        
 	
 }
