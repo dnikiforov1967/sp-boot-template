@@ -18,6 +18,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import org.template.spboot.root.annotation.FromParent;
 import org.template.spboot.root.beans.SimpleBean;
+import org.template.spboot.root.exception.SpecificException;
 import org.template.spboot.root.interfaces.AnimalInterface;
 import org.template.spboot.root.interfaces.FeedInterface;
 import org.template.spboot.root.interfaces.SwitchInterface;
@@ -117,7 +118,11 @@ public class EmptyController {
 
 	@RequestMapping(path = "/simplebean/{name}", method = GET)
 	public String getSimpleBean(@PathVariable("name") SimpleBean simpleBean) {
-            return simpleBean.getName();
-	}        
-	
+		final String name = simpleBean.getName();
+		if ("Godsilla".equals(name)) {
+			throw new SpecificException();
+		}
+		return name;
+	}
+
 }
