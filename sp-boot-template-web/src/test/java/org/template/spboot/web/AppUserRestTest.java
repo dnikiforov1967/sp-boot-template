@@ -36,6 +36,7 @@ import org.template.spboot.root.data.model.AppRole;
 import org.template.spboot.root.data.model.AppUser;
 import org.template.spboot.root.data.model.RoleEnum;
 import org.template.spboot.root.data.resource.AppUserResource;
+import org.template.spboot.root.exception.handler.ExternalExceptionHandler;
 import org.template.spboot.root.interfaces.AnimalInterface;
 import org.template.spboot.root.interfaces.FeedInterface;
 import org.template.spboot.root.service.UserApiServiceInterface;

@@ -23,6 +23,8 @@ import org.template.spboot.root.annotation.FromParent;
 import org.template.spboot.root.beans.SimpleBean;
 import org.template.spboot.root.exception.NuclearException;
 import org.template.spboot.root.exception.SpecificException;
+import org.template.spboot.root.exception.TooBigException;
+import org.template.spboot.root.exception.handler.ExternalExceptionHandler;
 import org.template.spboot.root.interfaces.AnimalInterface;
 import org.template.spboot.root.interfaces.FeedInterface;
 import org.template.spboot.root.interfaces.SwitchInterface;
@@ -33,7 +35,7 @@ import org.template.spboot.root.interfaces.SwitchInterface;
  */
 @RestController
 @RequestMapping("/hello")
-public class EmptyController {
+public class EmptyController extends ExternalExceptionHandler {
 
 	private static Logger LOG = Logger.getLogger(EmptyController.class.getName());
 
@@ -136,8 +138,10 @@ public class EmptyController {
 			throw new SpecificException();
 		} else if ("Anti".equals(name)) {
 			throw new NuclearException();
+		} else if ("Elephant".equals(name)) {
+			throw new TooBigException();
 		}
 		return name;
 	}
-
+	
 }
