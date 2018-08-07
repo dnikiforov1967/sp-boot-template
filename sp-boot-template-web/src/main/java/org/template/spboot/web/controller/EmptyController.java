@@ -19,8 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.template.spboot.root.annotation.BanzayHandle;
 import org.template.spboot.root.annotation.FromParent;
 import org.template.spboot.root.beans.SimpleBean;
+import org.template.spboot.root.exception.BanzayException;
 import org.template.spboot.root.exception.NuclearException;
 import org.template.spboot.root.exception.SpecificException;
 import org.template.spboot.root.exception.TooBigException;
@@ -35,6 +37,7 @@ import org.template.spboot.root.interfaces.SwitchInterface;
  */
 @RestController
 @RequestMapping("/hello")
+@BanzayHandle
 public class EmptyController extends ExternalExceptionHandler {
 
 	private static Logger LOG = Logger.getLogger(EmptyController.class.getName());
@@ -140,6 +143,17 @@ public class EmptyController extends ExternalExceptionHandler {
 			throw new NuclearException();
 		} else if ("Elephant".equals(name)) {
 			throw new TooBigException();
+		} else if ("Banzay".equals(name)) {
+			throw new BanzayException();
+		}
+		return name;
+	}
+
+	@RequestMapping(path = "/simplebean2/{name}", method = GET)
+	public String getSimpleBean2(@PathVariable("name") SimpleBean simpleBean) {
+		final String name = simpleBean.getName();
+		if ("Banzay".equals(name)) {
+			throw new BanzayException();
 		}
 		return name;
 	}
