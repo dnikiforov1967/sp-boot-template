@@ -39,13 +39,6 @@ public class DatabaseConfiguration {
         Map<String, String> pMap = new HashMap<>();
         pMap.put("javax.persistence.schema-generation.database.action", "drop-and-create");
         pMap.put("hibernate.transaction.jta.platform", "org.template.spboot.root.data.CustomJtaPlatform");
-        /*return builder
-                .dataSource(dataSource)
-                .jta(true)
-                .persistenceUnit("globalPU")
-                .packages(AppUser.class)
-                .properties(pMap)
-                .build();*/
         LocalContainerEntityManagerFactoryBean bean = new LocalContainerEntityManagerFactoryBean();
         final HibernateJpaVendorAdapter hibernateJpaVendorAdapter = new HibernateJpaVendorAdapter();
         bean.setJpaVendorAdapter(hibernateJpaVendorAdapter);
