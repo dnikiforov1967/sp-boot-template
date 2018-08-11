@@ -9,6 +9,7 @@ import com.atomikos.icatch.jta.UserTransactionImp;
 import com.atomikos.icatch.jta.UserTransactionManager;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 import javax.sql.DataSource;
 import javax.transaction.TransactionManager;
 import javax.transaction.UserTransaction;
@@ -17,6 +18,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.jta.JtaTransactionManager;
@@ -33,18 +35,27 @@ public class DatabaseConfiguration {
     @Bean
     @DependsOn({"transactionManager"})
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(
-            EntityManagerFactoryBuilder builder,
             DataSource dataSource) {
-        Map<String, String> properties = new HashMap<>();
-        properties.put("javax.persistence.schema-generation.database.action", "drop-and-create");
-        properties.put("hibernate.transaction.jta.platform", "org.template.spboot.root.data.CustomJtaPlatform");
-        return builder
+        Map<String, String> pMap = new HashMap<>();
+        pMap.put("javax.persistence.schema-generation.database.action", "drop-and-create");
+        pMap.put("hibernate.transaction.jta.platform", "org.template.spboot.root.data.CustomJtaPlatform");
+        /*return builder
                 .dataSource(dataSource)
                 .jta(true)
                 .persistenceUnit("globalPU")
                 .packages(AppUser.class)
-                .properties(properties)
-                .build();
+                .properties(pMap)
+                .build();*/
+        LocalContainerEntityManagerFactoryBean bean = new LocalContainerEntityManagerFactoryBean();
+        final HibernateJpaVendorAdapter hibernateJpaVendorAdapter = new HibernateJpaVendorAdapter();
+        bean.setJpaVendorAdapter(hibernateJpaVendorAdapter);
+        bean.setJtaDataSource(dataSource);
+        bean.setPackagesToScan(AppUser.class.getPackage().getName());
+        bean.setPersistenceUnitName("globalPU");
+        final Properties properties = new Properties();
+        properties.putAll(pMap);
+        bean.setJpaProperties(properties);
+        return bean;
     }
 
     @Bean(name = "userTransaction")
