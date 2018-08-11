@@ -18,13 +18,9 @@ import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.template.spboot.root.data.DatabaseConfiguration;
-import org.template.spboot.root.data.DevDataSourceConfiguration;
 import org.template.spboot.root.data.jpa.RoleJpaInterface;
 import org.template.spboot.root.data.jpa.UserAppJpaInterface;
 import org.template.spboot.root.data.model.AppRole;
@@ -42,7 +38,7 @@ import static org.template.spboot.root.data.model.RoleEnum.ROLE_USER;
 @ContextConfiguration(classes = {DatabaseConfiguration.class, DevDataSourceConfiguration.class})
 @Transactional
 public class JpaTest {
-
+    
     
 	@Autowired
 	private UserAppJpaInterface apiUser;
