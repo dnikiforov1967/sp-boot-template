@@ -1,6 +1,8 @@
-**/target/**
+*/target/**
 **/tmlog*.log
 p-boot-template-root-data/transaction-logs
 **/activemq-data
 /sp-boot-template-head/nbproject/
 /sp-boot-template-root-common/nbproject/
+/sp-boot-template-root-data/nbproject/
+sp-boot-template-root-data/localaccess.txt
