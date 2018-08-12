@@ -5,6 +5,9 @@
  */
 package org.template.spboot.root.test;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
@@ -18,6 +21,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -40,7 +46,7 @@ import static org.template.spboot.root.data.model.RoleEnum.ROLE_USER;
 @ActiveProfiles("test")
 @ContextConfiguration(classes = {TestDatabaseConfig.class})
 public class BMTTest {
-
+    
     @PersistenceContext(unitName = "testPU")
     private EntityManager em;
 
@@ -51,6 +57,9 @@ public class BMTTest {
     private PlatformTransactionManager txManager;
     
     private TransactionTemplate transactionTemplate ;
+    
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     @BeforeClass
     public static void setUpClass() {
@@ -124,6 +133,16 @@ public class BMTTest {
         transactionTemplate.execute(new TransactionCallback<Object>() {
             @Override
             public Object doInTransaction(TransactionStatus ts) {
+                jdbcTemplate.update("insert into users values(?,?)",
+                        new Object[] {"xa", "xa"});
+                RowMapper<String> rm = new RowMapper<String>() {
+                    @Override
+                    public String mapRow(ResultSet rs, int i) throws SQLException {
+                        return rs.getString(1);
+                    }
+                };
+                final List<String> list = jdbcTemplate.query("select username from users where username = ?", rm, "xa");
+                list.forEach((t)->{assertEquals(t,"xa");});
                 ts.setRollbackOnly();
                 return null;
             }
