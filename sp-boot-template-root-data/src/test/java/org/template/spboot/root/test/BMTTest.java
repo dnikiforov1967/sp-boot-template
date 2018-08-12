@@ -51,6 +51,8 @@ public class BMTTest {
     
     @Autowired
     private PlatformTransactionManager txManager;
+    
+    private TransactionTemplate transactionTemplate ;
 
     @BeforeClass
     public static void setUpClass() {
@@ -116,5 +118,18 @@ public class BMTTest {
         find = emLocal.find(AppUser.class, appUser.getUsername());
         assertNull(find);        
     }   
+    
+    @Test
+    public void testTT() {
+        transactionTemplate = new TransactionTemplate();
+        transactionTemplate.setTransactionManager(txManager);
+        transactionTemplate.execute(new TransactionCallback<Object>() {
+            @Override
+            public Object doInTransaction(TransactionStatus ts) {
+                ts.setRollbackOnly();
+                return null;
+            }
+        });
+    }    
     
 }
