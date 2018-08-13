@@ -54,6 +54,7 @@ public class FileAccessTest {
         raf.read(bytes);
         assertEquals("ghj",new String(bytes));
         raf.close();
+		file.delete();
     }
     
 }
