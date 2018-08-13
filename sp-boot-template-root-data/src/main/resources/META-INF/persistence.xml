@@ -4,6 +4,7 @@
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     <class>org.template.spboot.root.data.model.AppRole</class>
     <class>org.template.spboot.root.data.model.AppUser</class>
+    <class>org.template.spboot.root.data.model.Shape</class>
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
     </properties>

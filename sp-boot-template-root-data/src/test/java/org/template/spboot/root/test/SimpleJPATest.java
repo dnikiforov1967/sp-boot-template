@@ -22,6 +22,7 @@ import org.template.spboot.root.data.model.AppRole;
 import org.template.spboot.root.data.model.AppUser;
 import static org.template.spboot.root.data.model.RoleEnum.ROLE_ADMIN;
 import static org.template.spboot.root.data.model.RoleEnum.ROLE_USER;
+import org.template.spboot.root.data.model.Shape;
 
 /**
  *
@@ -70,4 +71,20 @@ public class SimpleJPATest {
         assertEquals(find.getPassword(),appUser.getPassword());
         em.clear();
     }
+	
+	
+    @Test
+    public void testShape() {
+        Shape shape = new Shape();
+		shape.setId(1L);
+		shape.getNames().add("Sphere");
+		shape.getNames().add("Shar");
+        em.persist(shape);
+        em.flush();
+        em.clear();
+        final Shape find = em.find(Shape.class, shape.getId());
+		assertEquals(find.getNames().size(),2);
+        assertEquals(find.getNames(),find.getNames());
+        em.clear();
+    }	
 }
