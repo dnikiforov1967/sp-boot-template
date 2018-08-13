@@ -12,6 +12,8 @@ import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
@@ -32,13 +34,14 @@ public class Shape implements Serializable {
 	@ElementCollection
 	@CollectionTable(name = "shapenames", joinColumns = @JoinColumn(name = "shape_id"))
 	@Column(name="name")
-	private Set<String> names = new HashSet<>();
+	@Enumerated(EnumType.STRING)
+	private Set<ShapeType> names = new HashSet<>();
 
-	public Set<String> getNames() {
+	public Set<ShapeType> getNames() {
 		return names;
 	}
 
-	public void setNames(Set<String> names) {
+	public void setNames(Set<ShapeType> names) {
 		this.names = names;
 	}
 

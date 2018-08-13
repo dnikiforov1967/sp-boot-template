@@ -23,6 +23,7 @@ import org.template.spboot.root.data.model.AppUser;
 import static org.template.spboot.root.data.model.RoleEnum.ROLE_ADMIN;
 import static org.template.spboot.root.data.model.RoleEnum.ROLE_USER;
 import org.template.spboot.root.data.model.Shape;
+import org.template.spboot.root.data.model.ShapeType;
 
 /**
  *
@@ -77,8 +78,8 @@ public class SimpleJPATest {
     public void testShape() {
         Shape shape = new Shape();
 		shape.setId(1L);
-		shape.getNames().add("Sphere");
-		shape.getNames().add("Shar");
+		shape.getNames().add(ShapeType.SPHERE);
+		shape.getNames().add(ShapeType.SPHEROID);
         em.persist(shape);
         em.flush();
         em.clear();
