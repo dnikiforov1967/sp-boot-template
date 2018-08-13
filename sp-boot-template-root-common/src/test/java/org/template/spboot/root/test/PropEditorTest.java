@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package prh.template.spboot.root.test;
+package org.template.spboot.root.test;
 
 import java.beans.PropertyEditorSupport;
 

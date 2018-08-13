@@ -5,4 +5,4 @@ p-boot-template-root-data/transaction-logs
 /sp-boot-template-head/nbproject/
 /sp-boot-template-root-common/nbproject/
 /sp-boot-template-root-data/nbproject/
-sp-boot-template-root-data/localaccess.txt
+sp-boot-template-root-common/localaccess.txt
