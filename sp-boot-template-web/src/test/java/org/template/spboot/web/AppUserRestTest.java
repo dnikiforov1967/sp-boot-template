@@ -71,8 +71,10 @@ public class AppUserRestTest {
 	@MockBean(name = "parentFeed")
 	private FeedInterface parentFeed;	
 	
-	@MockBean
+	@MockBean(name = "taskService")
 	private TaskInterface taskService;	
+	@MockBean(name = "taskServiceEx")
+	private TaskInterface taskServiceEx;		
 	
 	@MockBean
 	@FromParent
