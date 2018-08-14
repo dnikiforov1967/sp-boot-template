@@ -52,7 +52,6 @@ public class WebApplicationConfig implements WebMvcConfigurer {
 		return registration;
 	}
 
-	
 	@Override
 	public void configureAsyncSupport(AsyncSupportConfigurer configurer) {
 		ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
