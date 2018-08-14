@@ -10,6 +10,9 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.web.servlet.config.annotation.AsyncSupportConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.template.spboot.root.interfaces.AnimalInterface;
 import org.template.spboot.root.interfaces.SwitchInterface;
 import org.template.spboot.web.servlets.StatisticsServlet;
@@ -19,7 +22,7 @@ import org.template.spboot.web.servlets.StatisticsServlet;
  * @author dnikiforov
  */
 @SpringBootApplication
-public class WebApplicationConfig {
+public class WebApplicationConfig implements WebMvcConfigurer {
 
 	@Bean("animal")
 	@Primary
@@ -42,11 +45,25 @@ public class WebApplicationConfig {
 			}
 		};
 	}
-        
-        @Bean
-        public ServletRegistrationBean axisServletRegistrationBean() {
-            ServletRegistrationBean registration = new ServletRegistrationBean(new StatisticsServlet(), "/statistics/raw");
-            return registration;
-        }        
 
+	@Bean
+	public ServletRegistrationBean axisServletRegistrationBean() {
+		ServletRegistrationBean registration = new ServletRegistrationBean(new StatisticsServlet(), "/statistics/raw");
+		return registration;
+	}
+
+	
+	@Override
+	public void configureAsyncSupport(AsyncSupportConfigurer configurer) {
+		ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
+		taskExecutor.setCorePoolSize(2);
+		taskExecutor.setMaxPoolSize(16);
+		taskExecutor.setKeepAliveSeconds(0);
+		taskExecutor.setQueueCapacity(256);
+		taskExecutor.initialize();
+		configurer.setTaskExecutor(taskExecutor);
+	}
+
+	
+	
 }
