@@ -5,21 +5,22 @@
  */
 package org.template.spboot.root.async;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.springframework.stereotype.Service;
 
 /**
  *
  * @author dnikiforov
  */
-@Service(value = "taskService")
-public class TaskService implements TaskInterface {
+@Service(value = "taskServiceEx")
+public class TaskServiceWithException implements TaskInterface {
 
 	@Override
 	public String execute() {
 		try {
 			Thread.sleep(5000);
+			if (1==1) {
+				throw new ArithmeticException("NaN is detected");
+			}
 			return "Task finished";
 		} catch (InterruptedException ex) {
 			throw new RuntimeException(ex);
