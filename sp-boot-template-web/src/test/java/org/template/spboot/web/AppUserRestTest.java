@@ -31,6 +31,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import org.template.spboot.root.annotation.FromParent;
+import org.template.spboot.root.async.TaskInterface;
 import org.template.spboot.root.common.CommonHelper;
 import org.template.spboot.root.data.model.AppRole;
 import org.template.spboot.root.data.model.AppUser;
@@ -69,6 +70,9 @@ public class AppUserRestTest {
 
 	@MockBean(name = "parentFeed")
 	private FeedInterface parentFeed;	
+	
+	@MockBean
+	private TaskInterface taskService;	
 	
 	@MockBean
 	@FromParent
