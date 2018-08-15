@@ -5,6 +5,9 @@
  */
 package org.template.spboot.web;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
@@ -13,9 +16,11 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.servlet.config.annotation.AsyncSupportConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.handler.SimpleUrlHandlerMapping;
 import org.template.spboot.root.interfaces.AnimalInterface;
 import org.template.spboot.root.interfaces.SwitchInterface;
 import org.template.spboot.web.component.DirectController;
+import org.template.spboot.web.component.SimpleController;
 import org.template.spboot.web.servlets.StatisticsServlet;
 
 /**
@@ -68,6 +73,25 @@ public class WebApplicationConfig implements WebMvcConfigurer {
 	public DirectController directController() {
 		return new DirectController();
 	}
+	
+	@Bean("simple")
+	public SimpleController simple() {
+		return new SimpleController();
+	}
+	
+	@Bean
+    public SimpleUrlHandlerMapping urlHandler() {
+        SimpleUrlHandlerMapping simpleUrlHandlerMapping
+          = new SimpleUrlHandlerMapping();
+        simpleUrlHandlerMapping.setOrder(Integer.MAX_VALUE - 2);
+		
+        Properties prop = new Properties();
+        prop.put("/simpledirect", "simple");
+        simpleUrlHandlerMapping.setMappings(prop);
+		
+         
+        return simpleUrlHandlerMapping;
+    }	
 	
 	
 }
