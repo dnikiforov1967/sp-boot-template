@@ -93,6 +93,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .regexMatchers("/views.*").permitAll()
 				.regexMatchers("/async.*").permitAll()
 				.regexMatchers("/direct.*").permitAll()
+				.regexMatchers("/simpledirect.*").permitAll()
 				.anyRequest().authenticated()
 				.and()
 				//Adjust the logout behaviour
