@@ -15,6 +15,7 @@ import org.springframework.web.servlet.config.annotation.AsyncSupportConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.template.spboot.root.interfaces.AnimalInterface;
 import org.template.spboot.root.interfaces.SwitchInterface;
+import org.template.spboot.web.component.DirectController;
 import org.template.spboot.web.servlets.StatisticsServlet;
 
 /**
@@ -63,6 +64,10 @@ public class WebApplicationConfig implements WebMvcConfigurer {
 		configurer.setTaskExecutor(taskExecutor);
 	}
 
+	@Bean("/direct")
+	public DirectController directController() {
+		return new DirectController();
+	}
 	
 	
 }
