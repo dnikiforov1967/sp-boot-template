@@ -26,6 +26,12 @@ public class ViewsRestController {
 		modelAndView.addObject("name", name);
 		return modelAndView;
 	}
+        
+	@RequestMapping("/angular")
+	public ModelAndView getModelViewAngular() {
+		final ModelAndView modelAndView = new ModelAndView("angular");
+		return modelAndView;
+	}        
 	
 	@RequestMapping("/banzay/{name}")
 	public ModelAndView getSimpleBean2(@PathVariable("name") String name) {
