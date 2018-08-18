@@ -5,6 +5,8 @@
  */
 package org.template.spboot.root.test;
 
+import java.util.Map;
+import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -18,8 +20,10 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.template.spboot.root.data.model.Address;
 import org.template.spboot.root.data.model.AppRole;
 import org.template.spboot.root.data.model.AppUser;
+import org.template.spboot.root.data.model.Person;
 import static org.template.spboot.root.data.model.RoleEnum.ROLE_ADMIN;
 import static org.template.spboot.root.data.model.RoleEnum.ROLE_USER;
 import org.template.spboot.root.data.model.Shape;
@@ -87,5 +91,30 @@ public class SimpleJPATest {
 		assertEquals(find.getNames().size(),2);
         assertEquals(find.getNames(),find.getNames());
         em.clear();
-    }	
+    }
+    
+    @Test
+    public void testAddress() {
+        Address address = new Address();
+        address.setId(1L);
+        address.setCity("Moscow");
+        address.setStreat("Tverskaya 10");
+        
+        Person person = new Person();
+        person.setName("Vasya");
+        person.getAddresses().put("Moscow", address);
+        address.setPerson(person);
+        
+        em.persist(person);
+
+        em.flush();
+        em.clear();
+        
+        final Person find = em.find(Person.class, "Vasya");
+        final Set<Map.Entry<String, Address>> entrySet = find.getAddresses().entrySet();
+        assertEquals(1, entrySet.size());
+        assertEquals("Tverskaya 10", entrySet.iterator().next().getValue().getStreat());
+        
+    }
+    
 }
