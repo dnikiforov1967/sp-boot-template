@@ -23,11 +23,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.template.spboot.root.data.model.Address;
 import org.template.spboot.root.data.model.AppRole;
 import org.template.spboot.root.data.model.AppUser;
+import org.template.spboot.root.data.model.Course;
 import org.template.spboot.root.data.model.Person;
 import static org.template.spboot.root.data.model.RoleEnum.ROLE_ADMIN;
 import static org.template.spboot.root.data.model.RoleEnum.ROLE_USER;
 import org.template.spboot.root.data.model.Shape;
 import org.template.spboot.root.data.model.ShapeType;
+import org.template.spboot.root.data.model.Student;
 
 /**
  *
@@ -116,5 +118,25 @@ public class SimpleJPATest {
         assertEquals("Tverskaya 10", entrySet.iterator().next().getValue().getStreat());
         
     }
+    
+    @Test
+    public void testStudent() {
+        Student student = new Student();
+        student.setId(1L);
+        student.setName("Ivan");
+        
+        student.getCourses().put("math", new Course("A1"));
+        student.getCourses().put("bio", new Course("A2"));
+        
+        em.persist(student);
+
+        em.flush();
+        em.clear();
+        
+        final Student find = em.find(Student.class, 1L);
+        final Course get = find.getCourses().get("math");
+        assertEquals("A1", get.getName());
+        
+    }    
     
 }

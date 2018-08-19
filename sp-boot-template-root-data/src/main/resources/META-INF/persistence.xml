@@ -7,6 +7,7 @@
     <class>org.template.spboot.root.data.model.Shape</class>
     <class>org.template.spboot.root.data.model.Address</class>
     <class>org.template.spboot.root.data.model.Person</class>
+    <class>org.template.spboot.root.data.model.Student</class>
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
     </properties>
