@@ -5,10 +5,6 @@
  */
 package org.template.spboot.root.service;
 
-import java.util.HashSet;
-import java.util.Set;
-import javax.persistence.EntityExistsException;
-import javax.transaction.Transactional;
 import org.easymock.Capture;
 import org.easymock.EasyMock;
 import static org.easymock.EasyMock.capture;
