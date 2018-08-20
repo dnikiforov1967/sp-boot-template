@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.template.spboot.root.common.CommonHelper;
+import org.template.spboot.root.data.jpa.StorageProcedureInitInterface;
 import org.template.spboot.root.data.model.AppRole;
 import org.template.spboot.root.data.model.AppUser;
 import org.template.spboot.root.data.resource.AppUserResource;
@@ -38,6 +39,9 @@ public class DatabaseStarter {
 
 	@Autowired
 	private RoleServiceInterface roleServiceInterface;
+	
+	@Autowired(required = false)
+	private StorageProcedureInitInterface storageProcedureInitInterface;
 
 	@PostConstruct
 	private void init() {
@@ -54,6 +58,9 @@ public class DatabaseStarter {
 			});
 			users.forEach(userServiceInterface::create);
 			LOG.log(Level.WARNING, "Initial user set created");
+			if (storageProcedureInitInterface!=null) {
+				storageProcedureInitInterface.init();
+			}
 		} catch (IOException ex) {
 			throw new RuntimeException(ex);
 		}

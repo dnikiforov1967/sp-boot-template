@@ -27,6 +27,7 @@ import org.template.spboot.root.exception.TooBigException;
 import org.template.spboot.root.exception.handler.ExternalExceptionHandler;
 import org.template.spboot.root.interfaces.AnimalInterface;
 import org.template.spboot.root.interfaces.FeedInterface;
+import org.template.spboot.root.interfaces.StorageProcedureInterface;
 import org.template.spboot.root.interfaces.SwitchInterface;
 
 /**
@@ -155,5 +156,17 @@ public class EmptyController extends ExternalExceptionHandler {
 		}
 		return name;
 	}
+
+	@Autowired(required = false)
+	private StorageProcedureInterface sp;
+	
+	@RequestMapping(path = "/calc", method = GET)
+	public Integer getCalc() {
+		Integer i = -1;
+		if (sp!=null) {
+			i = sp.calc(10, 1);
+		}
+		return i;
+	}	
 	
 }
