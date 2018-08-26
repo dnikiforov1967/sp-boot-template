@@ -69,6 +69,35 @@ public class CyclicBarrierTest {
 		}
 
 	}
+        
+	private static class Changer2 implements Runnable {
+
+		private final CyclicBarrier cb;
+		private Thread thread;
+
+		public Changer2(CyclicBarrier cb) {
+			this.cb = cb;
+		}
+		
+		public void interrupt() {
+			System.out.println("Interrupt "+thread.getName());
+			thread.interrupt();
+		}
+
+		@Override
+		public void run() {
+			thread = Thread.currentThread();
+			ai.incrementAndGet();
+			try {
+				cb.await();
+			} catch (InterruptedException ex) {
+				Logger.getLogger(CyclicBarrierTest.class.getName()).log(Level.SEVERE, null, ex);
+			} catch (BrokenBarrierException ex) {
+				Logger.getLogger(CyclicBarrierTest.class.getName()).log(Level.SEVERE, null, ex);
+			}
+		}
+
+	}        
 	
 	public CyclicBarrierTest() {
 	}
@@ -141,6 +170,24 @@ public class CyclicBarrierTest {
 
 		//Main thread also should wait for tirring -gets Interrupted exception 
 		cb.await();
-	}	
+	}
+        
+        
+	@Test
+	public void cyclicBarrierTHreadsToComplete() throws InterruptedException, BrokenBarrierException {
+
+		ai.set(0);
+		CyclicBarrier cb = new CyclicBarrier(3, new PostRunner());
+		for (int i = 0; i < 2; i++) {
+			new Thread(new Changer(cb)).start();
+		}
+		//Main thread also should wait for tirring
+		TimeUnit.SECONDS.sleep(4);
+		cb.await();
+                TimeUnit.SECONDS.sleep(2);
+                ai.incrementAndGet();
+                TimeUnit.SECONDS.sleep(2);
+		assertEquals(9, ai.get());
+	}        
 	
 }
