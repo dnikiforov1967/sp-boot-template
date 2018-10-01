@@ -10,10 +10,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import javax.persistence.CascadeType;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.MapKey;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -28,9 +26,7 @@ public class Person implements Serializable {
     @Id
     private String name;
     
-    //@ElementCollection
     @OneToMany(mappedBy="person", cascade = CascadeType.ALL)
-    @MapKey(name = "city")
     private Map<String, Address> addresses = new HashMap<>();
 
     public Map<String, Address> getAddresses() {
