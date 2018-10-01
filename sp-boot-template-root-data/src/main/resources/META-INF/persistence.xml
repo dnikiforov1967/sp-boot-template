@@ -8,6 +8,8 @@
     <class>org.template.spboot.root.data.model.Address</class>
     <class>org.template.spboot.root.data.model.Person</class>
     <class>org.template.spboot.root.data.model.Student</class>
+    <class>org.template.spboot.root.data.model.one2many.Child</class>
+    <class>org.template.spboot.root.data.model.one2many.Parent</class>
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
     </properties>
