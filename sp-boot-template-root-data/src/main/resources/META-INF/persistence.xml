@@ -10,6 +10,8 @@
     <class>org.template.spboot.root.data.model.Student</class>
     <class>org.template.spboot.root.data.model.one2many.Child</class>
     <class>org.template.spboot.root.data.model.one2many.Parent</class>
+    <class>org.template.spboot.root.data.model.one2many.Child2D</class>
+    <class>org.template.spboot.root.data.model.one2many.Child2DJoined</class>
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
     </properties>

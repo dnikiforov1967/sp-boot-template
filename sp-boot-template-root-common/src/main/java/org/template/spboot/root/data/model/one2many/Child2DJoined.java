@@ -8,19 +8,29 @@ package org.template.spboot.root.data.model.one2many;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
  *
- * create table test_child (id integer not null, primary key (id))
- * 
  * @author dnikiforov
  */
 @Entity
-@Table(name="test_child")
-public class Child {
+@Table(name="test_child2djoined")
+public class Child2DJoined {
 	@Id
 	private Integer id;
+	
+	@OneToOne
+	private Parent parent;
+
+	public Parent getParent() {
+		return parent;
+	}
+
+	public void setParent(Parent parent) {
+		this.parent = parent;
+	}
 
 	public Integer getId() {
 		return id;
@@ -48,7 +58,7 @@ public class Child {
 		if (getClass() != obj.getClass()) {
 			return false;
 		}
-		final Child other = (Child) obj;
+		final Child2DJoined other = (Child2DJoined) obj;
 		if (!Objects.equals(this.id, other.id)) {
 			return false;
 		}
@@ -56,3 +66,4 @@ public class Child {
 	}
 	
 }
+

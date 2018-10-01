@@ -19,6 +19,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.template.spboot.root.data.model.one2many.Child;
+import org.template.spboot.root.data.model.one2many.Child2DJoined;
 import org.template.spboot.root.data.model.one2many.Parent;
 
 /**
@@ -62,10 +63,17 @@ public class One2ManyTest {
 		parent.setId(1);
 		Child child = new Child();
 		child.setId(1);
+		
+		Child2DJoined child2DJoined = new Child2DJoined();
+		child2DJoined.setId(1);
+		child2DJoined.setParent(parent);
+		
 		parent.getChilds().add(child);
 		em.persist(parent);
 		//We have to persist child also (no cascade operation)
 		em.persist(child);
+		em.persist(child2DJoined);
+		
 		em.flush();
 	}
 }
